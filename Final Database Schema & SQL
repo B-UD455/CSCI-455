@@ -1,0 +1,163 @@
+CREATE DATABASE HEALTHCARE_COACHING;
+
+USE HEALTHCARE_COACHING;
+
+CREATE TABLE HOSPITAL_DATA (
+patient_first_name_ VARCHAR(15) NOT NULL,
+patient_middle_name_ VARCHAR(15),
+patient_last_name VARCHAR(15) NOT NULL,
+patient_birth_date DATE NOT NULL, 
+patient_age CHAR(9) NOT NULL ,
+patient_weight CHAR(9) NOT NULL ,
+patient_ssn CHAR(9) NOT NULL ,
+patient_gender CHAR NOT NULL,
+patient_address_ VARCHAR(30) NOT NULL,
+patient_apt_num CHAR(9),
+patient_email_address VARCHAR(30) NOT NULL,
+patient_primary_phone CHAR(9) NOT NULL ,
+insurance_provider VARCHAR(15) NOT NULL,
+patient_language CHAR,
+patient_race CHAR,
+patient_emergency_contact_name VARCHAR(30) NOT NULL,
+patient_emergency_contact_num  CHAR(9) NOT NULL ,
+patient_emergency_contact_relationship VARCHAR(8) NOT NULL,
+patient_pharmacy VARCHAR(30) NOT NULL,
+patient_medical_history VARCHAR(500),
+
+PRIMARY KEY(patient_ssn),
+UNIQUE (patient_ssn),
+UNIQUE (patient_email_address),
+UNIQUE (patient_primary_phone),
+UNIQUE (patient_emergency_contact_num));
+
+
+CREATE TABLE INSURANCE_DATA (
+insurance_provider VARCHAR(15) NOT NULL
+policy_num CHAR(9) NOT NULL,
+patient_ssn CHAR(9) NOT NULL ,
+patient_first_name_ VARCHAR(15) NOT NULL,
+patient_middle_name_ VARCHAR(15),
+patient_last_name VARCHAR(15) NOT NULL,
+patient_birth_date_ Bdate DATE NOT NULL,, 
+patient_email_address VARCHAR(30) NOT NULL,
+patient_primary_phone CHAR(9) NOT NULL ,
+
+PRIMARY KEY(patient_ssn),
+FOREIGN KEY (insurance_provider),
+FOREIGN KEY (patient_first_name_),
+FOREIGN KEY (patient_middle_name_),
+FOREIGN KEY (patient_last_name),
+FOREIGN KEY (patient_birth_date_),
+UNIQUE (patient_ssn), 
+UNIQUE (policy_num),
+UNIQUE (patient_email_address),
+UNIQUE (patient_primary_phone),
+
+REFERENCES hospital_DATA(patient_Ssn),
+REFERENCES COACHING_DATA(patient_Ssn),
+REFERENCES PATIENT_PROFILE(patient_Ssn));
+
+
+CREATE TABLE COACHING_DATA (
+patient_medical_history VARCHAR(500),
+patient_pharmacy VARCHAR(30) NOT NULL,
+patient_ssn CHAR(9) NOT NULL ,
+patient_first_name_ VARCHAR(15) NOT NULL,
+patient_middle_name_ VARCHAR(15),
+patient_last_name VARCHAR(15) NOT NULL,
+patient_age CHAR(9) NOT NULL ,
+patient_weight CHAR(9) NOT NULL ,
+patient_gender CHAR NOT NULL,
+patient_email_address VARCHAR(30) NOT NULL,
+patient_primary_phone CHAR(9) NOT NULL ,
+personal_ID CHAR(9) NOT NULL ,
+
+PRIMARY KEY(patient_ssn),
+FOREIGN KEY (patient_first_name_),
+FOREIGN KEY (patient_middle_name_),
+FOREIGN KEY (patient_last_name),
+FOREIGN KEY (patient_age),
+FOREIGN KEY (patient_weight),
+UNIQUE (patient_ssn),
+UNIQUE (patient_email_address),
+UNIQUE (patient_primary_phone));
+
+
+CREATE TABLE PATIENT_PROFILE (
+patient_first_name_ VARCHAR(15) NOT NULL,
+patient_middle_name_ VARCHAR(15),
+patient_last_name VARCHAR(15) NOT NULL,
+patient_age CHAR(9) NOT NULL ,
+patient_email_address VARCHAR(30) NOT NULL,
+patient_primary_phone CHAR(9) NOT NULL ,
+patient_weight CHAR(9) NOT NULL ,
+patient-comments VARCHAR(500),
+patient_gender CHAR NOT NULL,
+personal_ID CHAR(9) NOT NULL ,
+policy_num CHAR(9) NOT NULL));
+
+
+INSERT INTO HOSPITAL_DATA (patient_first_name_,patient_middle_name_,patient_last_name,patient_birth_date_,
+patient_age,patient_weight,patient_ssn,patient_gender,patient_apt_num,patient_address_(street,city,state,zip),patient_email_address,patient_primary_phone,insurance_provider,patient_language,patient_race,patient_emergency_contact_name,patient_emergency_contact_num,patient_emergency_contact_relationship,patient_pharmacy,patient_medical_history)
+
+VALUES
+
+('Joyce','NULL','Lloyd','6-2-1986','35','233','849495490','F','4','7660 Proctor Dr.,Pikesville, MD, 21208','Joyce.Lloyd@gmail.com','9737232381','United Health','English','White','Tiana','9731201780','Mother','CVS','NULL')
+('Antony','Max','Douglas','11-23-1990','31','240','792928189','M','NULL','9 Willow Drive,Bonita Springs, FL, 34135','Antony.Douglas@yahoo.com','9735970564','Anthem Inc.','Spanish','Black','William','9734376089','Father','Walgreens','Diabetes')
+('Adrianna','Julian','Armstrong','11-24-1982','39','169','908237644','F','1','267 Ryan Lane,Snohomish, WA, 98290','Adrianna.Armstrong@aol.com','9739901576','Horizon','NULL','NULL','Catherine','9735730059','Sister','CVS','NULL')
+('Reid','NULL','Douglas','7-22-1984','37','183','732162288','M','NULL','8420 Manchester Ave.,Missoula, MT, 59801','Reid.Douglas@yahoo.com','9734417111','CVS','NULL','NULL','Paige','9733122909','Sister','Walgreens','Diabetes')
+('Rubie','Heather','Edwards','6-12-1990','31','196','230360779','F','7','82 Jones Street,North Kingstown, RI, 02852','Rubie.Edwards@gmail.com','9731063060','Cigna Health','English','White','Roland','9739755958','Brother','Walgreens','NULL')
+('Aiden','NULL','Hamilton','2-12-1994','27','204','599221501','M','NULL','9136 North Brook St.,Sewell, NJ, 08080','Aiden.Hamilton@gmail.com','9732316243','CVS','Spanish','NULL','Steven','9738372772','Father','Riteaid','High Blood Pressure')
+('Stella','Nicole','Davis','10-23-1986','35','209','254686117','F','10','32 Canterbury St.,Duluth, GA, 30096','Stella.Davis@aol.com','9734387304','Cigna Health','NULL','Latino','Steven','9735219493','Father','CVS','NULL')
+('Briony','NULL','Morgan','8-14-1983','38','233','768317861','F','NULL','9315 Carson Street,Kennewick, WA, 99337','Briony.Morgan@yahoo.com','9739711538','Horizon','NULL','Black','Miley','9732625557','Sister','CVS','NULL')
+('James','Davis','Scott','1-10-1997','24','176','442646875','M','NULL','540 West Summerhouse Street,Rossville, GA, 30741','James.Scott@gmail.com','9733755139','Anthem Inc.','English','NULL','Rubie','9732790802','Mother','Walgreens','High Blood Pressure')
+('Josh','Reid','Tucker','6-22-1985','36','243','983477833','M','5','687 Hill Field St.,Smithtown, NY,11787','Josh.Tucker@aol.com','9738458515','Horizon','Spanish','Latino','Cherry','9737345557','Mother','Walgreens','High Cholesterol')
+
+
+INSERT INTO INSURANCE_DATA (Insurance_provider,policy_num,patient_ssn,patient_first_name_,patient_middle_name_,patient_last_name,patient_birth_date_,patient_email_address,patient_primary_phone)
+
+VALUES
+
+('United Health','41295','849495490','Joyce','NULL','Lloyd','6-2-1986','Joyce.Lloyd@gmail.com','9737232381')
+('Anthem Inc.','34784','792928189','Antony','Max','Douglas','11-23-1990','Antony.Douglas@yahoo.com','9735970564')
+('Horizon','61068','908237644','Adrianna','Julian','Armstrong','11-24-1982','Adrianna.Armstrong@aol.com','9739901576')
+('CVS','65339','732162288','Reid','NULL','Douglas','7-22-1984','Reid.Douglas@yahoo.com','9734417111')
+('Cigna Health','67704','230360779','Rubie','Heather','Edwards','6-12-1990','Rubie.Edwards@gmail.com','9731063060')
+('CVS','62906','599221501','Aiden','NULL','Hamilton','2-12-1994','Aiden.Hamilton@gmail.com','9732316243')
+('Cigna Health','49622','254686117','Stella','Nicole','Davis','10-23-1986','Stella.Davis@aol.com','9734387304')
+('Horizon','66139','768317861','Briony','NULL','Morgan','8-14-1983','Briony.Morgan@yahoo.com','9739711538')
+('Anthem Inc.','39511','442646875','James','Davis','Scott','1-10-1997','James.Scott@gmail.com','9733755139')
+('Horizon','28468','983477833','Josh','Reid','Tucker','6-22-1985','Josh.Tucker@aol.com','9738458515')
+
+
+
+INSERT INTO COACHING_DATA (Insurance_provider,policy_num,patient_ssn,patient_first_name_,patient_middle_name_,patient_last_name,patient_birth_date_,patient_email_address,patient_primary_phone)
+
+VALUES
+
+('NULL','CVS','849495490','Joyce','NULL','Lloyd','35','233','F','Joyce.Lloyd@gmail.com','9737232381','J3154')
+('Diabetes','Walgreens','792928189','Antony','Max','Douglas','31','240','M','Antony.Douglas@yahoo.com','9735970564','A6038')
+('NULL','CVS','908237644','Adrianna','Julian','Armstrong','39','169','F','Adrianna.Armstrong@aol.com','9739901576','A8714')
+('Diabetes','Walgreens','732162288','Reid','NULL','Douglas','37','183','M','Reid.Douglas@yahoo.com','9734417111','R3993')
+('NULL','Walgreens','230360779','Rubie','Heather','Edwards','31','196','F','Rubie.Edwards@gmail.com','9731063060','R9240')
+('High Blood Pressure','Riteaid','599221501','Aiden','NULL','Hamilton','27','204','M','Aiden.Hamilton@gmail.com','9732316243','A9321')
+('NULL','CVS','254686117','Stella','Nicole','Davis','35','209','F','Stella.Davis@aol.com','9734387304','S2632')
+('NULL','CVS','768317861','Briony','NULL','Morgan','38','233','F','Briony.Morgan@yahoo.com','9739711538','B9441')
+('High Blood Pressure','Walgreens','442646875','James','Davis','Scott','24','176','M','James.Scott@gmail.com','9733755139','J9041')
+('High Cholesterol','Walgreens','983477833','Josh','Reid','Tucker','36','243','M','Josh.Tucker@aol.com','9738458515','J3781')
+
+
+INSERT INTO PATIENT_PROFILE (patient_medical_history,patient_pharmacy,patient_ssn,patient_first_name_,patient_middle_name_,patient_last_name,patient_age,patient_weight,patient_gender,patient_email_address,patient_primary_phone,Personal_ID)
+
+VALUES
+
+('Joyce','NULL','Lloyd','35','Joyce.Lloyd@gmail.com','9737232381','233','NULL','F','J3154','41295')
+('Antony','Max','Douglas','31','Antony.Douglas@yahoo.com','9735970564','240','NULL','M','A6038','34784')
+('Adrianna','Julian','Armstrong','39','Adrianna.Armstrong@aol.com','9739901576','169','NULL','F','A8714','61068')
+('Reid','NULL','Douglas','37','Reid.Douglas@yahoo.com','9734417111','183','NULL','M','R3993','65339')
+('Rubie','Heather','Edwards','31','Rubie.Edwards@gmail.com','9731063060','196','NULL','F','R9240','67704')
+('Aiden','NULL','Hamilton','27','Aiden.Hamilton@gmail.com','9732316243','204','NULL','M','A9321','62906')
+('Stella','Nicole','Davis','35','Stella.Davis@aol.com','9734387304','209','NULL','F','S2632','49622')
+('Briony','NULL','Morgan','38','Briony.Morgan@yahoo.com','9739711538','233','NULL','F','B9441','66139')
+('James','Davis','Scott','24','James.Scott@gmail.com','9733755139','176','NULL','M','J9041','39511')
+('Josh','Reid','Tucker','36','Josh.Tucker@aol.com','9738458515','243','NULL','M','J3781','28468')
